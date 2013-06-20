@@ -42,6 +42,7 @@ describe('ListenSpawn', function () {
         request('http://localhost:3000/', done);
       });
 
+      // ANTI-PATTERN: Copy/pasted section from `executes immediately`. We should move to `doubleshot` for repetition.
       it('is executed again', function () {
         // Assert only two executions took place
         var stdoutDates = this.stdout.match(/\d{5,}/g);
