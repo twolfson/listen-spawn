@@ -26,15 +26,19 @@
     "node": ">= 0.6.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "mocha"
   },
   "devDependencies": {
-    "grunt": "~0.3.17"
+    "grunt": "~0.3.17",
+    "mocha": "~1.11.0"
   },
   "keywords": [
     "server",
     "listen",
     "spawn",
     "command"
-  ]
+  ],
+  "dependencies": {
+    "colors": "~0.6.0-1"
+  }
 }
