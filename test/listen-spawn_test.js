@@ -8,7 +8,7 @@ describe('ListenSpawn', function () {
   describe('starting an echo process', function () {
     before(function (done) {
       // Start up a new server
-      var child = spawn('listen-spawn', ['date', '+%s']);
+      var child = spawn('listen-spawn', ['date', '+%s%N']);
       // var child = spawn('listen-spawn', ['date', '+%s'], {stdio: [0, 1, 2]});
 
       // Begin collecting stdout
@@ -26,10 +26,13 @@ describe('ListenSpawn', function () {
     });
 
     it('executes immediately', function () {
+      // Assert only one execution took place
+      var stdoutDates = this.stdout.match(/\d{5,}/g);
+      assert.strictEqual(stdoutDates.length, 1);
+
       // Assert stdout is near the current time
       var now = +new Date(),
-          stdoutDate = this.stdout.match(/\d{5,}/g),
-          then = +stdoutDate[0] * 1000;
+          then = +stdoutDates[0] / 1e6;
       assert(Math.abs(now - then) < 5000);
     });
 
@@ -40,7 +43,14 @@ describe('ListenSpawn', function () {
       });
 
       it('is executed again', function () {
-        console.log('HERE:', this.stdout);
+        // Assert only two executions took place
+        var stdoutDates = this.stdout.match(/\d{5,}/g);
+        assert.strictEqual(stdoutDates.length, 2);
+
+        // Assert stdout is near the current time
+        var now = +new Date(),
+            then = +stdoutDates[1] / 1e6;
+        assert(Math.abs(now - then) < 5000);
       });
     });
 
