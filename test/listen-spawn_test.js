@@ -1,5 +1,6 @@
 // Load in module and dependencies
 var ListenSpawn = require('../lib/listen-spawn.js'),
+    spawn = require('child_process').spawn,
     assert = require('assert');
 
 // TODO: Invoke child processes in separate processes to avoid polluting CLI
@@ -8,12 +9,12 @@ describe('ListenSpawn', function () {
   describe('starting an echo process', function () {
     before(function (done) {
       // Start up a new server
-      var server = new ListenSpawn('date', ['+%s']);
+      var child = spawn('listen-spawn', ['date', '+%s']);
 
       // Begin collecting stdout
       var that = this;
       this.stdout = '';
-      process.stdout.on('data', function (chunk) {
+      child.stdout.on('data', function (chunk) {
         that.stdout += chunk;
       });
 
@@ -24,8 +25,9 @@ describe('ListenSpawn', function () {
     it('executes immediately', function () {
       // Assert stdout is near the current time
       var now = +new Date(),
-          then = +this.stdout * 1000;
-      assert(now - then < 1000);
+          stdoutDate = this.stdout.match(/\d{5,}/),
+          then = +stdoutDate[0] * 1000;
+      assert(Math.abs(now - then) < 5000);
     });
 
     describe('when touched', function () {
