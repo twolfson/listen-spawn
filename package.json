@@ -43,6 +43,7 @@
   ],
   "dependencies": {
     "fn-colors": "~0.1.0",
-    "commander": "~1.2.0"
+    "commander": "~1.2.0",
+    "optimist": "~0.5.2"
   }
 }

@@ -2,18 +2,19 @@
 
 // Load in ListenSpawn and dependencies
 var ListenSpawn = require('../lib/listen-spawn.js'),
-    program = require('commander');
+//     program = require('commander');
+optimist = require('optimist');
 
-// Set up help and basics
-program
-  .version(require('../package.json').version)
-  .usage('[command] [args...] [options]');
-program.name = 'listen-spawn';
+// // Set up help and basics
+// program
+//   .version(require('../package.json').version)
+//   .usage('[command] [args...] [options]');
+// program.name = 'listen-spawn';
 
-// Parse the arguments
-program.parse(process.argv);
-
-console.log(program);
+// // Parse the arguments
+// program.parse(process.argv);
+var argv = optimist.parse(process.argv);
+console.log(argv);
 
 // If there were too few arguments, output help
 if (process.argv.length <= 2) {
