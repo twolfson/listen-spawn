@@ -2,21 +2,26 @@
 
 // Load in ListenSpawn and dependencies
 var ListenSpawn = require('../lib/listen-spawn.js'),
-//     program = require('commander');
-optimist = require('optimist');
+    optimist = require('optimist');
 
-// // Set up help and basics
-// program
-//   .version(require('../package.json').version)
-//   .usage('[command] [args...] [options]');
-// program.name = 'listen-spawn';
-
-// // Parse the arguments
-// program.parse(process.argv);
-var argv = optimist.parse(process.argv);
-console.log(argv);
+// Set up usage and parse arguments
+var argv = optimist
+            .usage('Usage: $0 [options --] command [args...]\nStarts server and invokes command with arguments whenever touched.')
+            .describe('port', 'Port to start server on')
+            ['default']('port', 3000)
+            .argv;
 
 // If there were too few arguments, output help
-if (process.argv.length <= 2) {
-  program.outputHelp();
+var _argv = argv._;
+if (_argv.length === 0) {
+  optimist.showHelp();
+  process.exit(1);
 }
+
+// Pluck out our command, arguments, and options
+var cmd = _argv[0],
+    args = _argv.slice(1),
+    options = argv;
+
+// Generate a new ListenSpawn with our parameters
+var server = ListenSpawn(cmd, args, options);
