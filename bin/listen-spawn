@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+
+// Load in ListenSpawn and dependencies
+var ListenSpawn = require('../lib/listen-spawn.js'),
+    program = require('commander');
+
+// Set up help and basics
+program
+  .version(require('../package.json').version)
+  .usage('[command] [args...] [options]');
+program.name = 'listen-spawn';
+
+// Parse the arguments
+program.parse(process.argv);
+
+console.log(program);
+
+// If there were too few arguments, output help
+if (process.argv.length <= 2) {
+  program.outputHelp();
+}

@@ -22,6 +22,9 @@
     }
   ],
   "main": "lib/listen-spawn",
+  "bin": {
+    "listen-spawn": "bin/listen-spawn"
+  },
   "engines": {
     "node": ">= 0.6.0"
   },
@@ -39,6 +42,7 @@
     "command"
   ],
   "dependencies": {
-    "fn-colors": "~0.1.0"
+    "fn-colors": "~0.1.0",
+    "commander": "~1.2.0"
   }
 }
