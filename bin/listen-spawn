@@ -23,5 +23,8 @@ var cmd = _argv[0],
     args = _argv.slice(1),
     options = argv;
 
+// Forward all output to stdout and stderr
+options.stdio = [0, 1, 2];
+
 // Generate a new ListenSpawn with our parameters
-var server = ListenSpawn(cmd, args, options);
+var server = new ListenSpawn(cmd, args, options);
