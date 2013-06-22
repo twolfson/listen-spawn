@@ -44,6 +44,7 @@
   ],
   "dependencies": {
     "fn-colors": "~0.1.0",
-    "optimist": "~0.5.2"
+    "optimist": "~0.5.2",
+    "nimble": "0.0.2"
   }
 }
