@@ -6,7 +6,7 @@ It was designed to allow for execution of semi-frequent commands but not on *eve
 
 This is accomplished by being a generic HTTP server with the ability to write [text editor specific plugins][plugins] to ping the server.
 
-Sublime Text 2 terminal
+### Sublime Text 2 terminal
 
 ![Sublime Text 2][subl-screenshot]
 
@@ -39,7 +39,7 @@ curl http://localhost:3000/ # > my_project@0.1.0 test [...]
 [request]: https://github.com/twolfson/sublime-request
 
 #### Out of the box solution
-The following shortcut invokes a `curl` request to `http://localhost:3000/` when `alt+x` is pressed. The downside is it opens a panel every time it is executed.
+The following shortcut invokes a `curl` request to `http://localhost:3000/` when `alt+x` is pressed. The downside is this opens a panel every time it is executed.
 
 ```js
 // Add the following to your "Key Bindings - User" inside the []
