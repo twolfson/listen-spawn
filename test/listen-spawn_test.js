@@ -14,13 +14,13 @@ describe('ListenSpawn', function () {
       var that = this;
       this.stdout = '';
       child.stdout.on('data', function (chunk) {
-        console.log(chunk + '');
+        // console.log(chunk + '');
         that.stdout += chunk;
       });
 
       var stderr = '';
       child.stderr.on('data', function (chunk) {
-        console.log(chunk + '');
+        // console.log(chunk + '');
         stderr += chunk;
       });
 
