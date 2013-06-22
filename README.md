@@ -21,29 +21,29 @@ Install the module globally with: `npm install -g listen-spawn`
 cd my_project
 
 # Set up listen-spawn to run `npm test`
-listen-spawn -- npm test # Listening at http://localhost:3000/ [...]
+listen-spawn -- npm test # Listening at http://localhost:7670/ [...]
 
 # In a separate process, curl the server to run `npm test` again
-curl http://localhost:3000/ # > my_project@0.1.0 test [...]
+curl http://localhost:7670/ # > my_project@0.1.0 test [...]
 ```
 
 ### Integrating with Sublime Text 2
 #### sublime-request
-[sublime-request][request] is a [Sublime Text 2][subl] plugin which adds the command `request`. The following shortcut makes a `curl` request to `http://localhost:3000/`.
+[sublime-request][request] is a [Sublime Text 2][subl] plugin which adds the command `request`. The following shortcut makes a `curl` request to `http://localhost:7670/`.
 
 ```js
 // Add the following to your "Key Bindings - User" inside the []
-{ "keys": ["alt+x"], "command": "request", "args": {"open_args": ["http://localhost:3000/"]} }
+{ "keys": ["alt+x"], "command": "request", "args": {"open_args": ["http://localhost:7670/"]} }
 ```
 
 [request]: https://github.com/twolfson/sublime-request
 
 #### Out of the box solution
-The following shortcut invokes a `curl` request to `http://localhost:3000/` when `alt+x` is pressed. The downside is this opens a panel every time it is executed.
+The following shortcut invokes a `curl` request to `http://localhost:7670/` when `alt+x` is pressed. The downside is this opens a panel every time it is executed.
 
 ```js
 // Add the following to your "Key Bindings - User" inside the []
-{ "keys": ["alt+x"], "command": "exec", "args": {"cmd": ["curl", "http://localhost:3000/"]} }
+{ "keys": ["alt+x"], "command": "exec", "args": {"cmd": ["curl", "http://localhost:7670/"]} }
 ```
 
 ## Documentation
@@ -55,14 +55,14 @@ Usage: listen-spawn [options] -- command [args...]
 Starts server and invokes command with arguments whenever touched.
 
 Options:
-  --port  Port to start server on  [default: 3000]
+  --port  Port to start server on  [default: 7670]
 ```
 
 ## Examples
 ### Run a specific test
 ```sh
 $ listen-spawn -- mocha test/assert.js
-20 Jun 04:17:58 - [listen-spawn] Listening at http://localhost:3000/
+20 Jun 04:17:58 - [listen-spawn] Listening at http://localhost:7670/
 20 Jun 04:17:58 - [listen-spawn] Starting new process -- mocha test/assert.js
 
   ․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․․
@@ -75,7 +75,7 @@ $ listen-spawn -- mocha test/assert.js
 ### Script testing a browser launcher
 ```sh
 $ listen-spawn -- node example/launch.js
-20 Jun 04:20:25 - [listen-spawn] Listening at http://localhost:3000/
+20 Jun 04:20:25 - [listen-spawn] Listening at http://localhost:7670/
 20 Jun 04:20:25 - [listen-spawn] Starting new process -- node example/launch.js
 Starting browser
 [...]
