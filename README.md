@@ -28,20 +28,23 @@ curl http://localhost:3000/ # > my_project@0.1.0 test [...]
 ```
 
 ### Integrating with Sublime Text 2
-I am still looking for a silent yet plugin-free solution. If really want a one-off plugin, please open a [GitHub issue][issues].
+#### sublime-request
+[sublime-request][request] is a [Sublime Text 2][subl] plugin which adds the command `request`. The following shortcut makes a `curl` request to `http://localhost:3000/`.
 
-For the time being, the following shortcut invokes a `curl` request to `http://localhost:3000/` when `alt+x` is pressed.
+```js
+// Add the following to your "Key Bindings - User" inside the []
+{ "keys": ["alt+x"], "command": "request", "args": {"open_args": ["http://localhost:3000/"]} }
+```
+
+[request]: https://github.com/twolfson/sublime-request
+
+#### Out of the box solution
+The following shortcut invokes a `curl` request to `http://localhost:3000/` when `alt+x` is pressed. The downside is it opens a panel every time it is executed.
 
 ```js
 // Add the following to your "Key Bindings - User" inside the []
 { "keys": ["alt+x"], "command": "exec", "args": {"cmd": ["curl", "http://localhost:3000/"]} }
 ```
-
-For the Windows users, please install [MinGW][mingw] (should be installed with [msysgit][msysgit]) and add it to your `PATH`.
-
-[issues]: https://github.com/twolfson/listen-spawn/issues
-[mingw]: http://www.mingw.org/
-[msysgit]: http://msysgit.github.io/
 
 ## Documentation
 `listen-spawn` installs a CLI endpoint via `npm`. It is good practice to always use `--` to separate `options` from `command` as this can lead to unintended parsing.
