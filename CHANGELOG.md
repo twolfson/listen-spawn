@@ -1,4 +1,6 @@
 # listen-spawn changelog
+0.4.0 - Moved to event based model for logging
+
 0.3.0 - Broke out child spawnning singleton into separate module
 
 0.2.2 - Fixed false positive for tests failing
