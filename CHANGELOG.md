@@ -1,4 +1,6 @@
 # listen-spawn changelog
+0.3.0 - Broke out child spawnning singleton into separate module
+
 0.2.2 - Fixed false positive for tests failing
 
 0.2.1 - Moved default port from `7670` to `7060`
