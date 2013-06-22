@@ -73,7 +73,9 @@ describe('ListenSpawn', function () {
       // Teardown the child
       var child = this.child;
       child.kill('SIGTERM');
-      done();
+      child.on('exit', function (code) {
+        done();
+      });
     });
   });
 });
