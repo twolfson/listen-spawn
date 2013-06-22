@@ -28,7 +28,8 @@ describe('ListenSpawn', function () {
 
       // Give us time to complete the startup
       setTimeout(function () {
-        done(stderr);
+        var err = stderr ? new Error(stderr) : null;
+        done(err);
       }, 500);
     });
 
