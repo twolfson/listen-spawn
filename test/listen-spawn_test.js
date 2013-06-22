@@ -11,18 +11,25 @@ describe('ListenSpawn', function () {
       var child = spawn('listen-spawn', ['date', '+%s%N']);
       // var child = spawn('listen-spawn', ['date', '+%s'], {stdio: [0, 1, 2]});
 
-      // Begin collecting stdout
+      // Begin collecting stdout and stderr
       var that = this;
       this.stdout = '';
       child.stdout.on('data', function (chunk) {
         that.stdout += chunk;
       });
 
+      var stderr = '';
+      child.stderr.on('data', function (chunk) {
+        stderr += chunk;
+      });
+
       // Save the child for teardown
       this.child = child;
 
       // Give us time to complete the startup
-      setTimeout(done, 500);
+      setTimeout(function () {
+        done(stderr);
+      }, 500);
     });
 
     it('executes immediately', function () {
