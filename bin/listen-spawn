@@ -8,7 +8,7 @@ var ListenSpawn = require('../lib/listen-spawn.js'),
 var argv = optimist
             .usage('Usage: $0 [options] -- command [args...]\nStarts server and invokes command with arguments whenever touched.')
             .describe('port', 'Port to start server on')
-            ['default']('port', 7670)
+            ['default']('port', 7060)
             .argv;
 
 // If there were too few arguments, output help

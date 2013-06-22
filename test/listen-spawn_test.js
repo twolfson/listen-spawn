@@ -46,7 +46,7 @@ describe('ListenSpawn', function () {
     describe('when touched', function () {
       before(function (done) {
         // DEV: Request is a bit of overkill
-        request('http://localhost:7670/', done);
+        request('http://localhost:7060/', done);
       });
 
       // ANTI-PATTERN: Copy/pasted section from `executes immediately`. We should move to `doubleshot` for repetition.

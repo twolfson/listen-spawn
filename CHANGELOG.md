@@ -1,4 +1,6 @@
 # listen-spawn changelog
+0.2.1 - Moved default port from `7670` to `7060`
+
 0.2.0 - Moved default port from `3000` to `7670`
 
 0.1.1 - Updated `README.md` with information about [sublime-request](https://github.com/twolfson/sublime-request)
