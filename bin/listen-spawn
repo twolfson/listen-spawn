@@ -28,3 +28,34 @@ options.stdio = [0, 1, 2];
 
 // Generate a new ListenSpawn with our parameters
 var server = new ListenSpawn(cmd, args, options);
+
+// Log out any events from the server
+var util = require('util'),
+    colors = require('fn-colors');
+
+// Log the address we are listening at
+util.log('[listen-spawn] Listening at http://localhost:' + options.port + '/');
+
+// When the child kill starts, log it
+server.on('killing', function () {
+  util.log.green('[listen-spawn] Killing existing child');
+});
+
+// When the child start starts, log it
+server.on('starting', function () {
+  util.log.green('[listen-spawn] Starting new process -- ' + cmd + ' ' + args.join(' '));
+});
+
+// When a request is received, log it
+server.on('request', function () {
+  util.log.green('[listen-spawn] Request received');
+});
+
+// If a child exits, log it
+server.on('exit', function (code) {
+  if (code === 0) {
+    util.log.green('[listen-spawn] App exited cleanly');
+  } else {
+    util.log.green('[listen-spawn] App left with exit code ' + code);
+  }
+});
