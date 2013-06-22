@@ -14,11 +14,13 @@ describe('ListenSpawn', function () {
       var that = this;
       this.stdout = '';
       child.stdout.on('data', function (chunk) {
+        console.log(chunk + '');
         that.stdout += chunk;
       });
 
       var stderr = '';
       child.stderr.on('data', function (chunk) {
+        console.log(chunk + '');
         stderr += chunk;
       });
 
@@ -46,28 +48,32 @@ describe('ListenSpawn', function () {
     describe('when touched', function () {
       before(function (done) {
         // DEV: Request is a bit of overkill
-        request('http://localhost:7060/', done);
+        request('http://localhost:7060/', function (err) {
+          setTimeout(function () {
+            done(err);
+          }, 200);
+        });
       });
 
       // ANTI-PATTERN: Copy/pasted section from `executes immediately`. We should move to `doubleshot` for repetition.
       it('is executed again', function () {
         // Assert only two executions took place
         var stdoutDates = this.stdout.match(/\d{5,}/g);
-        console.log(stdoutDates);
-        // assert.strictEqual(stdoutDates.length, 2);
+        assert.strictEqual(stdoutDates.length, 2);
 
-        // // Assert stdout is near the current time
-        // var now = +new Date(),
-        //     then = +stdoutDates[1] / 1e6;
-        // assert(Math.abs(now - then) < 5000);
+        // Assert stdout is near the current time
+        var now = +new Date(),
+            then = +stdoutDates[1] / 1e6;
+        assert(Math.abs(now - then) < 5000);
       });
     });
 
     // When we are done testing
-    after(function () {
+    after(function (done) {
       // Teardown the child
       var child = this.child;
       child.kill('SIGTERM');
+      done();
     });
   });
 });
