@@ -52,7 +52,7 @@ server.on('request', function () {
 });
 
 // If a child exits, log it
-server.on('exit', function (code) {
+server.on('exited', function (code) {
   if (code === 0) {
     util.log.green('[listen-spawn] App exited cleanly');
   } else {
