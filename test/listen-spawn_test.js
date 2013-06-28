@@ -132,7 +132,10 @@ describe('ListenSpawn', function () {
       });
 
       it('does not start a new command before the other has terminated', function () {
+        var exitLogs = this.stdout.match(/App exited cleanly/g);
         console.log(this.stdout);
+        console.log(exitLogs);
+        assert(exitLogs.length <= 2);
       });
     });
 
