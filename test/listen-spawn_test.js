@@ -78,4 +78,71 @@ describe('ListenSpawn', function () {
       });
     });
   });
+
+  describe('executing a non-immediate command', function () {
+    before(function (done) {
+      // Start up a new server
+      var child = spawn('listen-spawn', [
+            'node',
+            '-e',
+            [
+              'setTimeout(function () {',
+              '  console.log("hey");',
+              '}, 1000);'
+            ].join('')
+          ]);
+
+      // Begin collecting stdout and stderr
+      var that = this;
+      this.stdout = '';
+      child.stdout.on('data', function (chunk) {
+        // console.log(chunk + '');
+        that.stdout += chunk;
+      });
+
+      var stderr = '';
+      child.stderr.on('data', function (chunk) {
+        // console.log(chunk + '');
+        stderr += chunk;
+      });
+
+      // Save the child for teardown
+      this.child = child;
+
+      // Give us time to complete the startup
+      setTimeout(function () {
+        var err = stderr ? new Error(stderr) : null;
+        done(err);
+      }, 500);
+    });
+
+    describe('when touched in rapid succession', function () {
+      before(function (done) {
+        // Clear out stdout for good measure
+        this.stdout = '';
+
+        // Fire 3 concurrent requests
+        request('http://localhost:7060/', function () {});
+        request('http://localhost:7060/', function () {});
+        request('http://localhost:7060/', function () {});
+        setTimeout(function () {
+          done();
+        }, 200);
+      });
+
+      it('does not start a new command before the other has terminated', function () {
+        console.log(this.stdout);
+      });
+    });
+
+    // When we are done testing
+    after(function (done) {
+      // Teardown the child
+      var child = this.child;
+      child.kill('SIGTERM');
+      child.on('exit', function (code) {
+        done();
+      });
+    });
+  });
 });
