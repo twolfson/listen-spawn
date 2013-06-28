@@ -1,4 +1,6 @@
 # listen-spawn changelog
+0.6.0 - Added throttling to requests to prevent multiple processes starting concurrently
+
 0.5.0 - Moved `single-child` into `node_module` and loading it as a dependency
 
 0.4.0 - Moved to event based model for logging
