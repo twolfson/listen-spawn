@@ -83,12 +83,13 @@ describe('ListenSpawn', function () {
     before(function (done) {
       // Start up a new server
       var child = spawn('listen-spawn', [
+            '--',
             'node',
             '-e',
             [
               'setTimeout(function () {',
               '  console.log("hey");',
-              '}, 1000);'
+              '}, 100);'
             ].join('')
           ]);
 
@@ -113,7 +114,7 @@ describe('ListenSpawn', function () {
       setTimeout(function () {
         var err = stderr ? new Error(stderr) : null;
         done(err);
-      }, 500);
+      }, 200);
     });
 
     describe('when touched in rapid succession', function () {
@@ -127,7 +128,7 @@ describe('ListenSpawn', function () {
         request('http://localhost:7060/', function () {});
         setTimeout(function () {
           done();
-        }, 200);
+        }, 500);
       });
 
       it('does not start a new command before the other has terminated', function () {
