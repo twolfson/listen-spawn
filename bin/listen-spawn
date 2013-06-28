@@ -51,6 +51,11 @@ server.on('request', function () {
   util.log.green('[listen-spawn] Request received');
 });
 
+// When a request is ignored, log it
+server.on('restart-ignored', function () {
+  util.log.green('[listen-spawn] Request ignored - Restart already in progress');
+});
+
 // If a child exits, log it
 server.on('exited', function (code) {
   if (code === 0) {
