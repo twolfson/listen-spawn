@@ -1,17 +1,16 @@
 # listen-spawn [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)](https://www.gittip.com/twolfson/)
 
-Start a server to run commands when touched.
+Start a HTTP server which runs commands when pinged.
 
-It was designed to allow for execution of semi-frequent commands but not on *every* save.
+It was designed to allow for execution of semi-frequent commands (e.g. a blocking command, starting a browser). This is complimented by [text editor specific plugins][plugins] which make requests to the server.
 
-This is accomplished by being a generic HTTP server with the ability to write [text editor specific plugins][plugins] to ping the server.
+Below is a screenshot of using [Sublime Text 2][subl] with [sublime-request][request] and a keyboard shortcut to launch [browser-launcher][launcher] tests.
 
-### Sublime Text 2 terminal
-
-![Sublime Text 2][subl-screenshot]
+![Sublime Text 2 using sublime-request and browser-launcher][screenshot]
 
 [plugins]: #sublime-text-plugin
-[subl-screenshot]: sublime_text_2.png
+[screenshot]: screenshot.png
+[launcher]: https://github.com/substack/browser-launcher
 
 ## Getting Started
 Install the module globally with: `npm install -g listen-spawn`

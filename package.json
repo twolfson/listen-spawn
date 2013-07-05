@@ -1,6 +1,6 @@
 {
   "name": "listen-spawn",
-  "description": "Start a server to run commands when touched.",
+  "description": "Start a HTTP server which runs commands when pinged.",
   "version": "0.6.0",
   "homepage": "https://github.com/twolfson/listen-spawn",
   "author": {
@@ -40,7 +40,11 @@
     "server",
     "listen",
     "spawn",
-    "command"
+    "command",
+    "http",
+    "run",
+    "exec",
+    "ping"
   ],
   "dependencies": {
     "fn-colors": "~0.1.0",
