@@ -6,9 +6,12 @@ It was designed to allow for execution of semi-frequent commands (e.g. a blockin
 
 Below is a screenshot of using [Sublime Text 2][subl] with [sublime-request][request] and a keyboard shortcut to launch [browser-launcher][launcher] tests.
 
+TODO: subl link
+
 ![Sublime Text 2 using sublime-request and browser-launcher][screenshot]
 
 [plugins]: #sublime-text-plugin
+[subl]: http://sublimetext.com/
 [screenshot]: screenshot.png
 [launcher]: https://github.com/substack/browser-launcher
 
