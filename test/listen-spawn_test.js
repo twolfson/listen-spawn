@@ -1,6 +1,5 @@
 // Load in module and dependencies
-var ListenSpawn = require('../lib/listen-spawn.js'),
-    spawn = require('child_process').spawn,
+var spawn = require('child_process').spawn,
     assert = require('assert'),
     request = require('request');
 
@@ -145,6 +144,41 @@ describe('ListenSpawn', function () {
       child.on('exit', function (code) {
         done();
       });
+    });
+  });
+
+  // DEV: This is testing an edge case
+  describe.only('running successive commands', function () {
+    before(function (done) {
+      // Start up a new server
+      var child = spawn('listen-spawn', ['date', '+%s%N', '&&', 'echo', 'hi']);
+
+      // Begin collecting stdout and stderr
+      var that = this;
+      this.stdout = '';
+      child.stdout.on('data', function (chunk) {
+        // console.log(chunk + '');
+        that.stdout += chunk;
+      });
+
+      var stderr = '';
+      child.stderr.on('data', function (chunk) {
+        // console.log(chunk + '');
+        stderr += chunk;
+      });
+
+      // Save the child for teardown
+      this.child = child;
+
+      // Give us time to complete the startup
+      setTimeout(function () {
+        var err = stderr ? new Error(stderr) : null;
+        done(err);
+      }, 500);
+    });
+
+    it('runs both commands in order', function () {
+      console.log(this.stdout);
     });
   });
 });

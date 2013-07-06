@@ -18,16 +18,15 @@ if (_argv.length === 0) {
   process.exit(1);
 }
 
-// Pluck out our command, arguments, and options
-var cmd = _argv[0],
-    args = _argv.slice(1),
+// Collect the arguments into our command and save the options
+var cmd = _argv.join(' '),
     options = argv;
 
 // Forward all output to stdout and stderr
 options.stdio = [0, 1, 2];
 
 // Generate a new ListenSpawn with our parameters
-var server = new ListenSpawn(cmd, args, options);
+var server = new ListenSpawn(cmd, options);
 
 // Log out any events from the server
 var util = require('util'),
@@ -43,7 +42,7 @@ server.on('killing', function () {
 
 // When the child start starts, log it
 server.on('starting', function () {
-  util.log.green('[listen-spawn] Starting new process -- ' + cmd + ' ' + args.join(' '));
+  util.log.green('[listen-spawn] Starting new process -- ' + cmd);
 });
 
 // When a request is received, log it
