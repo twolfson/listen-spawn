@@ -4,7 +4,7 @@ var spawn = require('child_process').spawn,
     request = require('request');
 
 describe('ListenSpawn', function () {
-  describe('starting an echo process', function () {
+  describe.only('starting an echo process', function () {
     before(function (done) {
       // Start up a new server
       var child = spawn('listen-spawn', ['date', '+%s%N']);
