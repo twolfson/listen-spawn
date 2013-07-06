@@ -147,8 +147,8 @@ describe('ListenSpawn', function () {
     });
   });
 
-  // DEV: This is testing an edge case
-  describe.only('running successive commands', function () {
+  // DEV: This is testing an edge case of bash chaining
+  describe('running successive commands', function () {
     before(function (done) {
       // Start up a new server
       var child = spawn('listen-spawn', ['echo', 'Hello', '&&', 'echo', 'World']);
@@ -179,6 +179,16 @@ describe('ListenSpawn', function () {
 
     it('runs both commands in order', function () {
       assert(this.stdout.match('Hello\nWorld'));
+    });
+
+    // When we are done testing
+    after(function (done) {
+      // Teardown the child
+      var child = this.child;
+      child.kill('SIGTERM');
+      child.on('exit', function (code) {
+        done();
+      });
     });
   });
 });
