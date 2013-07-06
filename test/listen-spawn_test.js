@@ -151,7 +151,7 @@ describe('ListenSpawn', function () {
   describe.only('running successive commands', function () {
     before(function (done) {
       // Start up a new server
-      var child = spawn('listen-spawn', ['date', '+%s%N', '&&', 'echo', 'hi']);
+      var child = spawn('listen-spawn', ['echo', 'Hello', '&&', 'echo', 'World']);
 
       // Begin collecting stdout and stderr
       var that = this;
@@ -178,7 +178,7 @@ describe('ListenSpawn', function () {
     });
 
     it('runs both commands in order', function () {
-      console.log(this.stdout);
+      assert(this.stdout.match('Hello\nWorld'));
     });
   });
 });
