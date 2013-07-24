@@ -49,6 +49,6 @@
   "dependencies": {
     "fn-colors": "~0.1.0",
     "optimist": "~0.5.2",
-    "single-child": "~0.2.0"
+    "single-child": "~0.3.2"
   }
 }
