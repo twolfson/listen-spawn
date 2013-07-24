@@ -1,6 +1,8 @@
 # listen-spawn [![Build status](https://travis-ci.org/twolfson/listen-spawn.png)](https://travis-ci.org/twolfson/listen-spawn)
 
-Start a HTTP server which runs commands when pinged. This is **intended for development** use.
+Start a HTTP server which runs commands when pinged.
+
+This is **intended for development use only**.
 
 It was designed to allow for execution of semi-frequent commands (e.g. a blocking command, starting a browser). This is complimented by [text editor specific plugins][plugins] which make requests to the server.
 
