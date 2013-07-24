@@ -8,6 +8,7 @@ describe('ListenSpawn', function () {
   describe('starting an echo process', function () {
     before(function (done) {
       // Start up a new server
+      // DEV: We cannot call `listen-spawn` as Windows has not added it to the CLI yet.
       var child = spawn('node', ['bin/listen-spawn', '--', 'node', '-e', 'console.log(+new Date());']);
 
       // Begin collecting stdout and stderr
