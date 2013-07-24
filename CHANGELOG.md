@@ -1,4 +1,6 @@
 # listen-spawn changelog
+0.7.1 - Added notes about `nodemon`, Windows caveats to README, bumped patch version of `single-child`
+
 0.7.0 - Updated dependencies to match Windows support
 
 0.6.1 - Made README more approachable
