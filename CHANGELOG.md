@@ -1,4 +1,6 @@
 # listen-spawn changelog
+0.7.0 - Updated dependencies to match Windows support
+
 0.6.1 - Made README more approachable
 
 0.6.0 - Added throttling to requests to prevent multiple processes starting concurrently
