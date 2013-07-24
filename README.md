@@ -2,7 +2,7 @@
 
 Start a HTTP server which runs commands when pinged.
 
-This is **intended for development use only**.
+This is **intended for development use only**. It is supported and tested on Linux and Windows.
 
 It was designed to allow for execution of semi-frequent commands (e.g. a blocking command, starting a browser). This is complimented by [text editor specific plugins][plugins] which make requests to the server.
 
