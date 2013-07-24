@@ -8,7 +8,7 @@ describe('ListenSpawn', function () {
   describe('starting an echo process', function () {
     before(function (done) {
       // Start up a new server
-      var child = spawn('listen-spawn', ['date', '+%s%N']);
+      var child = spawn('listen-spawn', ['--', 'node', '-e', 'console.log(+new Date());']);
 
       // Begin collecting stdout and stderr
       var that = this;
@@ -41,7 +41,7 @@ describe('ListenSpawn', function () {
 
       // Assert stdout is near the current time
       var now = +new Date(),
-          then = +stdoutDates[0] / 1e6;
+          then = +stdoutDates[0];
       assert(Math.abs(now - then) < 5000);
     });
 
@@ -63,7 +63,7 @@ describe('ListenSpawn', function () {
 
         // Assert stdout is near the current time
         var now = +new Date(),
-            then = +stdoutDates[1] / 1e6;
+            then = +stdoutDates[1];
         assert(Math.abs(now - then) < 5000);
       });
     });
