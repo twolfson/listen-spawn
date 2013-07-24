@@ -66,7 +66,7 @@ Options:
 ### Windows caveats
 If you are trying to run command prompt specific commands (e.g. `echo`), you will run into trouble. Unfortunately, [`child_process.spawn`][cp-spawn] does not like to run these. To remedy this, you will need to run it via `cmd /c`.
 
-```bash
+```bat
 E:\listen-spawn> REM This will fail
 E:\listen-spawn> listen-spawn -- echo 1
 24 Jul 01:30:41 - [listen-spawn] Listening at http://localhost:7060/
