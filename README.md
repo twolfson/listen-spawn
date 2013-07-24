@@ -46,6 +46,11 @@ The following shortcut invokes a `curl` request to `http://localhost:7060/` when
 { "keys": ["alt+x"], "command": "exec", "args": {"cmd": ["curl", "http://localhost:7060/"]} }
 ```
 
+### File watching based solution
+If you are looking for a solution which performs an action when a file changes rather than when a server is pinged, then you should checkout [nodemon][].
+
+[nodemon]: https://github.com/remy/nodemon
+
 ## Documentation
 `listen-spawn` installs a CLI endpoint via `npm`. It is good practice to always use `--` to separate `options` from `command` as this can lead to unintended parsing.
 
@@ -57,6 +62,25 @@ Starts server and invokes command with arguments whenever touched.
 Options:
   --port  Port to start server on  [default: 7060]
 ```
+
+### Windows caveats
+If you are trying to run command prompt specific commands (e.g. `echo`), you will run into trouble. Unfortunately, [`child_process.spawn`][cp-spawn] does not like to run these. To remedy this, you will need to run it via `cmd /c`.
+
+```bash
+E:\listen-spawn> REM This will fail
+E:\listen-spawn> listen-spawn -- echo 1
+24 Jul 01:30:41 - [listen-spawn] Listening at http://localhost:7060/
+...
+Error: spawn ENOENT
+E:\listen-spawn> REM To make it run, use `cmd /c`
+E:\listen-spawn> listen-spawn -- cmd /c echo 1
+24 Jul 01:31:37 - [listen-spawn] Listening at http://localhost:7060/
+24 Jul 01:31:37 - [listen-spawn] Starting new process -- cmd /c echo 1
+1
+24 Jul 01:31:37 - [listen-spawn] App exited cleanly
+```
+
+[cp-spawn]: http://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options
 
 ## Examples
 ### Run a specific test
