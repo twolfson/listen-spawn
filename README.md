@@ -13,8 +13,6 @@ Below is a screenshot of using [Sublime Text 2][subl] with [sublime-request][req
 [screenshot]: screenshot.png
 [launcher]: https://github.com/substack/browser-launcher
 
-Donations accepted: [![Donate via Gittip](http://badgr.co/gittip/twolfson.png)](https://www.gittip.com/twolfson/)
-
 ## Getting Started
 Install the module globally with: `npm install -g listen-spawn`
 
@@ -82,6 +80,13 @@ $ listen-spawn -- node example/launch.js
 Starting browser
 [...]
 ```
+
+## Donating
+Donations are accepted via [Gittip][gittip]
+
+[![Donate via Gittip](http://badgr.co/gittip/twolfson.png)][gittip]
+
+[gittip]: https://www.gittip.com/twolfson/
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
