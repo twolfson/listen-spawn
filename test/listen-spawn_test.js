@@ -8,19 +8,19 @@ describe('ListenSpawn', function () {
   describe('starting an echo process', function () {
     before(function (done) {
       // Start up a new server
-      var child = spawn('listen-spawn', ['--', 'node', '-e', 'console.log(+new Date());']);
+      var child = spawn('node', ['bin/listen-spawn', '--', 'node', '-e', 'console.log(+new Date());']);
 
       // Begin collecting stdout and stderr
       var that = this;
       this.stdout = '';
       child.stdout.on('data', function (chunk) {
-        // console.log(chunk + '');
+        console.log(chunk + '');
         that.stdout += chunk;
       });
 
       var stderr = '';
       child.stderr.on('data', function (chunk) {
-        // console.log(chunk + '');
+        console.log(chunk + '');
         stderr += chunk;
       });
 
@@ -82,7 +82,8 @@ describe('ListenSpawn', function () {
   describe('executing a non-immediate command', function () {
     before(function (done) {
       // Start up a new server
-      var child = spawn('listen-spawn', [
+      var child = spawn('node', [
+            'bin/listen-spawn',
             '--',
             'node',
             '-e',
