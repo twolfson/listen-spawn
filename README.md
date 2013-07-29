@@ -1,4 +1,4 @@
-# listen-spawn [![Build status](https://travis-ci.org/twolfson/listen-spawn.png)](https://travis-ci.org/twolfson/listen-spawn)
+# listen-spawn [![Build status](https://travis-ci.org/twolfson/listen-spawn.png?branch=master)](https://travis-ci.org/twolfson/listen-spawn)
 
 Start a HTTP server which runs commands when pinged.
 

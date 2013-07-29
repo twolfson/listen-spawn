@@ -1,4 +1,6 @@
 # listen-spawn changelog
+0.7.2 - Updated Travis CI badge to point to `master` branch
+
 0.7.1 - Added notes about `nodemon`, Windows caveats to README, bumped patch version of `single-child`
 
 0.7.0 - Updated dependencies to match Windows support
