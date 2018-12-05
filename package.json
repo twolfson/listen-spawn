@@ -34,7 +34,7 @@
   "devDependencies": {
     "grunt": "~0.3.17",
     "mocha": "~1.11.0",
-    "request": "~2.21.0"
+    "request": "~2.88.0"
   },
   "keywords": [
     "server",
